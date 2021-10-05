@@ -1,0 +1,34 @@
+<!-- Are you sure? view -->
+<div *ngIf="exists && !sure && !delete" class="container-center column fill">
+    <div class="textfield" style="text-align: center; margin-top: -100px;">
+        Are you sure you want to read this note?
+    </div>
+    <div class="textfield" style="text-align: center; margin-top: 5px;">
+        If you read this note now, it will be deleted from the server 
+        and you won't be able to read it again!
+    </div>
+    <div class="container-buttons row">
+        <app-button class="left" btnText="YES" color="green" (click)="readNote()"></app-button>
+        <app-button class="center" btnText="NO" color="orange" routerLink="" routerLinkActive="active"></app-button>
+        <app-button class="right" btnText="delete" color="red" (click)="deleteNote()"></app-button>
+    </div>
+</div>
+
+<!-- Read note view -->
+<div *ngIf="sure" class="container-center column fill">
+    <div class="textfield note-output text-center">{{note}}</div>
+    <app-button class="button-home" btnText="new note" color="orange" routerLink="" routerLinkActive="active"></app-button>
+</div>
+
+<!-- Delete note view -->
+<div *ngIf="delete">
+    <app-delete-note id={{id}} (goBackEvent)="dontDelete()" (noteDeletedEvent)="goToHomePage()"></app-delete-note>
+</div>
+
+<!-- Note doesn't exist view -->
+<div *ngIf="!exists && existsRecieved" class="container-center column fill">
+    <div class="textfield" style="text-align: center; margin-top: 30px;">
+        Note doesn't exist ;(
+    </div>
+    <app-button class="button-home" btnText="new note" color="orange" routerLink="" routerLinkActive="active"></app-button>
+</div>

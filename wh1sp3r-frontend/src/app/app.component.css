@@ -1,0 +1,108 @@
+.container-main{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.header {
+    width: 100%;
+    height: auto;
+    background-color: #151515;
+    z-index: 0;
+    user-select: none;
+}
+
+.container-blackbar {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.footer {
+    background-color:  #151515;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+}
+
+.container-banner{
+    display: flex;
+    flex-direction: row;
+    text-shadow:
+        0 0 2px #FF7A00,
+        0 0 10px #FF7A00,
+        0 0 42px #FF7A00,
+        0 0 92px #FF7A00,
+        0 0 300px #FF7A00,
+        0 0 600px #FF7A00,
+        0 0 800px #FF7A00;
+}
+
+.banner-spacing-correction{
+    margin-right: -0.6rem;
+}
+
+.header h1 {
+    color: #FF7A00;
+    text-shadow: -2px 2px #ffffff;
+    font-size: 6.4rem;
+    margin-top: 28px;
+    margin-bottom: -5px;
+    
+}
+
+.header h3{
+    font-size: 1.6rem;
+    letter-spacing: 0.8rem;
+    margin-bottom: 30px;
+}
+
+.blackbar{
+    background-color: #000000;
+    width: 100%;
+}
+
+.body {
+    width: 100%;
+}
+
+.router{
+    width: 1000px;
+    height: 100%;
+}
+
+.footer a{
+    margin: 2rem;
+    font-size: 1.6rem;
+    color: #696969;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+    .header h1 {
+        font-size: 4.8rem;
+        margin-top: 25px;
+        margin-bottom: 5px;
+    }
+    
+    .header h3{
+        font-size: 1.2rem;
+        letter-spacing: 0.2rem;
+        margin-bottom: 30px;
+    }
+
+    .footer h3{
+        font-size: 1.2rem;
+        color: #696969;
+    }
+
+    .blackbar{
+        width: 0%;
+    }
+
+  }

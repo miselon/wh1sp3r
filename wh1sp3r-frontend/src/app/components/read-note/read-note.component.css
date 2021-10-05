@@ -1,0 +1,35 @@
+.container-buttons{
+    display: flex;
+    width: 658px;
+    height: 150px;
+    margin-top: 20px;
+}
+
+.textfield{
+    width: 610px;
+}
+
+.note-output{
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+}
+
+.button-home{
+    width: 250px;
+    height: 200px;
+    margin-top: 20px;
+}
+
+app-button.left{
+    margin-right: 10px;
+}
+
+app-button.center{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+app-button.right{
+    margin-left: 10px;
+}

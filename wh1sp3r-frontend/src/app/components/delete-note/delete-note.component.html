@@ -1,0 +1,14 @@
+<div *ngIf="!sure" class="container-center column fill">
+    <div class="textfield">Are you sure you want to delete note with ID {{id}}?</div>
+    <div class="container-buttons">
+        <app-button class="button-left" btnText="yes" color="red" (click)="delete()"></app-button>
+        <app-button class="button-right" btnText="no" color="green" (click)="goBack()"></app-button>
+    </div>
+</div>
+
+<div *ngIf="responseRecieved" class="container-center column fill">
+    <div *ngIf="deleted" class="textfield">Note {{id}} deleted successfully!</div>
+    <div *ngIf="!deleted" class="textfield">Error deleting note</div>
+    <app-button class="button-home" btnText="new note" color="orange" (click)="goBack()"></app-button>
+</div>
+

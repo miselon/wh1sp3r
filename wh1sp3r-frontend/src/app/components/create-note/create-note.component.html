@@ -1,0 +1,39 @@
+
+<!-- Home view for creating notes -->
+<div *ngIf="!noteCreated" class="container-center column">
+  <textarea id="note-input-field" class="textfield note-input" #noteBody placeholder="Type in your note here..."></textarea>
+  <div class="container-center row fill">
+    <div class="textfield controls">
+      <span style="text-decoration: underline;">Note will self-destruct after:</span> 
+      <div class="container-center row fill">
+        <div class="container-center column lifespan-buttons">
+          <app-button class="button-lifespan" btnText="+" color="green" (click)="decrementLifespanIndex()"></app-button>
+          <app-button class="button-lifespan" btnText="-" color="red" (click)="incrementLifespanIndex()"></app-button>
+        </div>
+        <span class="lifespan">{{noteLifespanString}}</span>
+      </div>
+    </div>
+    <app-button class="button-create-note" btnText="CREATE" color="orange" (click)="submitNote(noteBody.value)"></app-button>
+  </div>
+</div>
+
+<!-- Link view shown after note is created -->
+<div *ngIf="noteCreated && !delete" class="container-center column fill">
+  <div class="textfield note-created-msg">
+    Your private note has been created!<br> <br>
+    To send someone your note, simply send them link below and they will be able to read it.
+  </div>
+  <div class="container-link-output">
+    <div class="textfield">{{generatedLink}}</div>
+    <app-button btnText="copy" color="orange" (click)="copyLinkToClipboard()"></app-button>
+  </div>
+  <div class="container-buttons">
+    <app-button class="button-left" btnText="new note" color="orange" (click)="createAnotherNote()"></app-button>
+    <app-button class="button-right" btnText="delete it" (click)="deleteNote()"></app-button>
+  </div>
+</div>
+
+<!-- Delete note view -->
+<div *ngIf="delete">
+  <app-delete-note id={{id}} (goBackEvent)="dontDelete()" (noteDeletedEvent)="createAnotherNote()"></app-delete-note>
+</div>
