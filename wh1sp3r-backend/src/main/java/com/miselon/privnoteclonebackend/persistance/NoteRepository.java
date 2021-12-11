@@ -8,10 +8,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
 
 @Repository
-public interface NoteRepo extends JpaRepository<Note, String> {
+public interface NoteRepository extends JpaRepository<Note, String> {
 
     @Modifying
     @Transactional

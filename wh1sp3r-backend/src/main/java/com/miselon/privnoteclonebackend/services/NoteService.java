@@ -2,8 +2,9 @@ package com.miselon.privnoteclonebackend.services;
 
 import com.miselon.privnoteclonebackend.model.Note;
 import com.miselon.privnoteclonebackend.model.NoteRequest;
-import com.miselon.privnoteclonebackend.persistance.NoteRepo;
+import com.miselon.privnoteclonebackend.persistance.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -13,14 +14,14 @@ import java.util.Optional;
 public class NoteService {
 
     @Autowired
-    private NoteRepo noteRepo;
+    private NoteRepository noteRepository;
 
     /**
      * Saves note object to the repository
      * @return generated note ID
      */
     public String saveNote(Note note){
-        this.noteRepo.save(note);
+        this.noteRepository.save(note);
         return note.getId();
     }
 
@@ -35,15 +36,8 @@ public class NoteService {
         return new Note(noteRequest);
     }
 
-    /**
-     * Checks if a note exists in the database,
-     * used by the client app to either present a note
-     * or to inform the user that a particular note doesn't exist.
-     * @param id of the note
-     * @return boolean representing note's existence
-     */
     public Boolean isNoteInDatabase(String id){
-        return this.noteRepo.findById(id).isPresent();
+        return this.noteRepository.findById(id).isPresent();
     }
 
     /**
@@ -53,26 +47,30 @@ public class NoteService {
      * @return Note object from the repo or null if note doesn't exist
      */
     public Note getNote(String id){
-        Optional<Note> note = this.noteRepo.findById(id);
+        Optional<Note> note = this.noteRepository.findById(id);
         if(note.isPresent()){
-            this.noteRepo.deleteById(id);
+            this.noteRepository.deleteById(id);
             return note.get();
         } else return null;
     }
 
     public Boolean deleteNote(String id){
-        this.noteRepo.deleteById(id);
+        this.noteRepository.deleteById(id);
         // Check if note was actually deleted
-        return this.noteRepo.findById(id).isEmpty();
+        return this.noteRepository.findById(id).isEmpty();
     }
 
     @Async
     public void runExpiredNoteDeleter(){
         while(true){
-            this.noteRepo.deleteExpiredNotes(System.currentTimeMillis());
+            this.noteRepository.deleteExpiredNotes(System.currentTimeMillis());
             try { Thread.sleep(5000); }
             catch (InterruptedException e) { e.printStackTrace(); }
         }
     }
 
+    // For testing
+    public void setNoteRepository(NoteRepository noteRepository) {
+        this.noteRepository = noteRepository;
+    }
 }
