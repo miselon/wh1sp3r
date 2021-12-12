@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
+// TODO implement proper exception throwing
 
 @Service
 public class NoteService {

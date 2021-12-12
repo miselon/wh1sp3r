@@ -1,7 +1,7 @@
 package com.miselon.privnoteclonebackend.model;
 
 /**
- *  NoteRequest represents note save request submitted by the client app.
+ *  Object representing request submitted by the client app.
  */
 
 public class NoteRequest {

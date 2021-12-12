@@ -36,6 +36,7 @@ public class Note {
     }
 
     private Long calculateLifespan(int index){
+        // TODO this sucks
         Long millis = System.currentTimeMillis();
         // 30 days
         if(index == 0) millis += 2592000000L;
